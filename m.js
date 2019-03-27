@@ -40,7 +40,7 @@ function go() {
     test();
     initMap();
     if(DebugON) console.log("fin initMap");
-    if (false){
+///    if (false){
     $.when($.ajax(url1), $.ajax(url2)).done(function (a1, a2) {
         // a1 and a2 are arguments resolved for the page1 and page2 ajax requests, respectively.
         // Each argument is an array with the following structure: [ data, statusText, jqXHR ]
@@ -55,7 +55,7 @@ function go() {
         setTimeout(openSocket, 4000); // donne le temps a demarre openSocket();
 //        zoombound();
     });
-}
+///}
     if(DebugON) console.log("fin go");
 }
 function scanpoint(datagpx, pointsV, pointsT) {
