@@ -8,7 +8,7 @@
 var TOKEN = "pk.eyJ1IjoiZ2Fnbm9uYW5kcmUiLCJhIjoiY2p0OHBkcnV0MDd3aTQzcXpwbnFwc2FubyJ9.gGJ8Sk-9g0jIG8BjX2YLbQ";
 var DebugON = false;
 
-var MAXDELAI = 60 * 15 * 1000; // 15 min en millisecdelai avant de déclarer un device en panne
+var MAXDELAI = 60 * 25 * 1000; // 15 min en millisecdelai avant de déclarer un device en panne
 //var poly = [];
 //var polyautres = [];
 //var marker = [];
@@ -40,7 +40,7 @@ function go() {
     test();
     initMap();
     if(DebugON) console.log("fin initMap");
-///    if (false){
+    if (false){
     $.when($.ajax(url1), $.ajax(url2)).done(function (a1, a2) {
         // a1 and a2 are arguments resolved for the page1 and page2 ajax requests, respectively.
         // Each argument is an array with the following structure: [ data, statusText, jqXHR ]
@@ -55,7 +55,7 @@ function go() {
         setTimeout(openSocket, 4000); // donne le temps a demarre openSocket();
 //        zoombound();
     });
-///}
+}
     if(DebugON) console.log("fin go");
 }
 function scanpoint(datagpx, pointsV, pointsT) {
@@ -677,8 +677,8 @@ function initMap() {
         style: terrainoriginal,
 
         center: [clon, clat], //[-122.486052, 37.830348],
-        zoom: 7
- //       bearing: 135
+        zoom: 15,
+        bearing: 135
     });
 // options.bearing
 // Add zoom and rotation controls to the map.
@@ -688,7 +688,7 @@ function initMap() {
 
     map.addControl(new mapboxgl.GeolocateControl({
         positionOptions: {
-            enableHighAccuracy: false
+            enableHighAccuracy: true
         },
         trackUserLocation: true
     }));
