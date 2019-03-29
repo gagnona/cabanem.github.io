@@ -39,8 +39,9 @@ function go() {
     var url2 = "./br_pts.gpx";
     test();
     initMap();
-    if(DebugON) console.log("fin initMap");
-    if (false){
+    if (DebugON)
+        console.log("fin initMap");
+//    if (false){
     $.when($.ajax(url1), $.ajax(url2)).done(function (a1, a2) {
         // a1 and a2 are arguments resolved for the page1 and page2 ajax requests, respectively.
         // Each argument is an array with the following structure: [ data, statusText, jqXHR ]
@@ -55,8 +56,9 @@ function go() {
         setTimeout(openSocket, 4000); // donne le temps a demarre openSocket();
 //        zoombound();
     });
-}
-    if(DebugON) console.log("fin go");
+//}
+    if (DebugON)
+        console.log("fin go");
 }
 function scanpoint(datagpx, pointsV, pointsT) {
 
@@ -158,8 +160,9 @@ function parseEvent(data) {
 }
 function scanvacuum(arrlocal) {
 
-  
-        if(DebugON) console.log("scanvacuum: nb vacuum " + arrlocal.length);
+
+    if (DebugON)
+        console.log("scanvacuum: nb vacuum " + arrlocal.length);
     var facteurCorrection = 0.01;
     arrlocal.forEach(function (no, i) {
         var temp;
@@ -232,8 +235,9 @@ function LV(nom) {
         if (typeof datelecture !== 'undefined') {  // bail out si pas de date
             if (isLater(datelecture, this.datelecture) &&
                     !(isOffline(datelecture, this.datelecture))) { // une mise à jour
-        if(DebugON) console.log ("update "+this.nom+" vac "+vacuum+" lect "+ dateToHour(datelecture) +" "+datelecture);
-               this.online = true;
+                if (DebugON)
+                    console.log("update " + this.nom + " vac " + vacuum + " lect " + dateToHour(datelecture) + " " + datelecture);
+                this.online = true;
                 this.vacuum = vacuum;
                 this.color = this.findColor();  //met à jour la couleur
                 this.datelecture = datelecture;
@@ -257,7 +261,8 @@ function LV(nom) {
 
                 }
 
-                if(DebugON) console.log("in update OFF " + this.nom);
+                if (DebugON)
+                    console.log("in update OFF " + this.nom);
             }
         }
     };
@@ -289,7 +294,8 @@ function LV(nom) {
         this.ptVac = pt;
         var geoline = createMarqueurVacuum(this.nomVacuum, 0, this.ptVac);
         plotgeoJson(this.nomVacuum, geoline, false);
-        if(DebugON) console.log("traceVac " + [this.nomVacuum, 0, this.ptVac].join(" "));
+        if (DebugON)
+            console.log("traceVac " + [this.nomVacuum, 0, this.ptVac].join(" "));
 
     };
     this.traceTemp = function (nomT, pt) {
@@ -300,7 +306,8 @@ function LV(nom) {
         var tdate = dateToHour(d);
         var geoline = createMarqueurTemp(this.nomTemperature, 99, d, this.ptTemp);
         plotgeoJson(this.nomTemperature, geoline, false);
-        if(DebugON) console.log("traceTemp " + [this.nomTemperature, this.temperature, Date.now(), this.pTemp].join(" "));
+        if (DebugON)
+            console.log("traceTemp " + [this.nomTemperature, this.temperature, Date.now(), this.pTemp].join(" "));
     };
 
 
@@ -533,7 +540,8 @@ function myFixed(val, prec) {
         try {
             return(val.toFixed(prec));
         } catch (err) {
-            if(DebugON) console.log(arguments.callee.caller.toString(), " a passé une mauvaise val de temp ou vac ", val);
+            if (DebugON)
+                console.log(arguments.callee.caller.toString(), " a passé une mauvaise val de temp ou vac ", val);
             return(val);
         }
     } else
@@ -543,7 +551,7 @@ function createMarqueurTemp(nom, temp, datelect, pts) {
     var text = ' ';
     if (temp !== 99)
         text = myFixed(temp, 1);
-    var d =  nom;              //dateToHour(datelect);
+    var d = nom;              //dateToHour(datelect);
     var myobj = {
         "id": nom,
         "type": "symbol",
@@ -602,7 +610,8 @@ function updateMarqeurTemp(nom, temp, datelect, coord) {
         var d = dateToHour(datelect);
     }
 
-    if(DebugON) console.log("updateMarqTemp", [nom, temp, datelect, coord].join(" "));
+    if (DebugON)
+        console.log("updateMarqTemp", [nom, temp, datelect, coord].join(" "));
     var myobj = {
         "type": "Feature",
         "properties": {
@@ -635,7 +644,8 @@ function plotgeoJson(nom, geoline, click) {
 //    }
     map.on('load', function () {
         map.addLayer(geoline);
-        if(DebugON) console.log("plotgeo " + nom + " " + map.getSource(nom)._data.properties.nom);
+        if (DebugON)
+            console.log("plotgeo " + nom + " " + map.getSource(nom)._data.properties.nom);
         if (click)
             addClick(nom);
     });
@@ -648,8 +658,12 @@ function zoomMax() {
     map.fitBounds(bounds, {padding: 0});
 }
 function isMobile() {
-  try{ document.createEvent("TouchEvent"); return true; }
-  catch(e){ return false; }
+    try {
+        document.createEvent("TouchEvent");
+        return true;
+    } catch (e) {
+        return false;
+    }
 }
 
 function initMap() {
