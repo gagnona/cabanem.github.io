@@ -147,7 +147,7 @@ function openSocket() {
 }
 function wsUri(path) {
     var l = window.location;
-    return "ws://boilerhouse.ddns.net:3001/" + l.pathname + path;
+    return "ws://boilerhouse.ddns.net:3300/" + l.pathname + path;
     return ((l.protocol === "https:") ? "wss://" : "ws://") + l.hostname + (((l.port !== 80) && (l.port !== 443)) ? ":" + l.port : "") + l.pathname + path;
 }
 
